@@ -1,20 +1,17 @@
-import pymongo
+from pymongo import MongoClient
 
 
+class DataManager:
 
-def main():
-    client = pymongo.MongoClient("mongodb://localhost:27017/")
+    def __init__(self,*,uri,data_name,collection_name):
+        self.__client = MongoClient(uri)
+        self.__db = self.__client[data_name]
+        self.__collection = self.__db[collection_name]
+        self.__collection.delete_many({})
 
-    my_db = client["mydatabase"]
-
-    my_collection = my_db["customers"]
-    my_collection.delete_many({})
-
-    my_data = {"name": "John", "address": "Highway 37"}
-    my_collection.insert_one(my_data)
-
-    for doc in my_collection.find():
-        print(doc)
-
-if __name__=="__main__":
-    main()
+    def save_data(self,data):
+        try:
+            result = self.__collection.insert_many(data)
+            print(f"Inserted document IDs: {result.inserted_ids}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
