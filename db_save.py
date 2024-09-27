@@ -1,13 +1,12 @@
 from pymongo import MongoClient
 
 
-class DataManager:
+class DataSave:
 
     def __init__(self, *, uri, data_name, collection_name):
         self.__client = MongoClient(uri)
         self.__db = self.__client[data_name]
         self.__collection = self.__db[collection_name]
-        self.__collection.delete_many({})
 
     @property
     def collection(self):
@@ -20,6 +19,8 @@ class DataManager:
         except Exception as e:
             print(f"An error occurred: {e}")
 
+    def clear_collection(self):
+        self.collection.delete_many({})
 
 
 

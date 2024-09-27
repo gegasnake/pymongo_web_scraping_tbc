@@ -116,9 +116,3 @@ async def return_every_parse() -> tuple[Any]:
         list_of_information = await asyncio.gather(*tasks)
         return list_of_information
 
-
-# Run the asynchronous function
-# if __name__ == "__main__":
-#     recipes = asyncio.run(return_every_parse())
-#     print(type(recipes))
-#     print(recipes)
