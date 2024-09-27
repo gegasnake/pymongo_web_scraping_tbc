@@ -1,3 +1,6 @@
+from idlelib.editor import darwin
+
+from data_analyze import DataAnalyzer
 from db_save import DataManager
 from scrape import return_every_parse
 import asyncio
@@ -16,6 +19,12 @@ def main():
     except Exception as e:
         print(f"An error occurred: {e}")
 
+    data_analyzer= DataAnalyzer(data_manager.collection)
+    data_analyzer.author_with_most_recipes()
+    print("#####################################")
+    data_analyzer.average_ingredients_per_recipe()
+    print("#####################################")
+    data_analyzer.average_receipt_per_recipe()
 
 if __name__ == '__main__':
     main()
