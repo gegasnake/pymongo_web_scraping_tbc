@@ -19,8 +19,8 @@ class DataAnalyzer:
 
             if result:
                 for recipe in result:
-                    recipe_name = recipe.get('Recipe Name', 'Unknown')  # Get recipe name
-                    ingredients_count = recipe.get('ingredients_count', 0)  # Get ingredient count
+                    recipe_name = recipe.get('Recipe Name', 'Unknown')
+                    ingredients_count = recipe.get('ingredients_count', 0)
                     print(f"Recipe: {recipe_name} ---> Ingredients count: {ingredients_count}")
             else:
                 print("No data found")
